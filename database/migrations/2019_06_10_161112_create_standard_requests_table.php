@@ -15,7 +15,11 @@ class CreateStandardRequestsTable extends Migration
     {
         Schema::create('standard_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tipe');
+            $table->string('company_name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('type');
             $table->string('person');
             $table->string('description');
             $table->timestamps();

@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\ExpressRequest;
 use App\Image;
 use App\User;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ExpressRequestCreated;
 use Inertia\Inertia;
 
 class ExpressRequestController extends Controller
@@ -66,9 +63,21 @@ class ExpressRequestController extends Controller
             }
         }
 
-        foreach(User::all() as $user) {
-            Mail::to($user->email)->send(new ExpressRequestCreated());
-        }
+        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        User::all()->each(function ($user) use ($beautymail, $req) {
+            $beautymail->send(
+                'emails.expressRequestCreated', 
+                [
+                    'company' => $req->company_name,
+                    'link' => config('app.url') . "/express-requests/{$req->id}",
+                ], 
+                function($message) use ($user)
+            {
+                $message
+                    ->to($user->email, $user->name)
+                    ->subject('Nuova Richiesta Express');
+            });
+        });
 
         return $req;
     }

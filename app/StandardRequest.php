@@ -6,10 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class StandardRequest extends Model
 {
-    public $fillable = ['type', 'person', 'description'];
+    public $fillable = [
+        'company_name', 
+        'email', 'phone', 
+        'address', 
+        'type', 
+        'person', 
+        'description'
+    ];
 
     public function images()
     {
-        $this->hasMany('App\Image');
+       return $this->hasMany('App\Image');
     }
 }

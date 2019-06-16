@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr 
-          v-for="req in $page.requests.data.length > 0" 
+          v-for="req in $page.requests.data" 
           v-bind:key="req.id"
           class="pointer-cursor"
         >

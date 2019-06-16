@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\StandardRequest;
 use App\Image;
 use App\User;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\StandardRequestCreated;
 use Inertia\Inertia;
 
 class StandardRequestController extends Controller
@@ -61,9 +58,21 @@ class StandardRequestController extends Controller
             }
         }
 
-        foreach(User::all() as $user) {
-            Mail::to($user->email)->send(new StandardRequestCreated());
-        }
+        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        User::all()->each(function ($user) use ($beautymail, $req) {
+            $beautymail->send(
+                'emails.standardRequestCreated', 
+                [
+                    'company' => $req->company_name,
+                    'link' => config('app.url') . "/standard-requests/{$req->id}",
+                ], 
+                function($message) use ($user)
+            {
+                $message
+                    ->to($user->email, $user->name)
+                    ->subject('Nuova Richiesta');
+            });
+        });
 
         return $req;
     }

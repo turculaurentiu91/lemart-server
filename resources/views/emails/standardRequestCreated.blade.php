@@ -5,7 +5,7 @@
 	@include('beautymail::templates.minty.contentStart')
 		<tr>
 			<td class="title">
-				Nuova Richiesta Express
+				Nuova Richiesta
 			</td>
 		</tr>
 		<tr>
@@ -13,7 +13,7 @@
 		</tr>
 		<tr>
 			<td class="paragraph">
-				Ce una nuova richiesta express da {{$company}}
+				Ce una nuova richiesta da {{$company}}
 			</td>
 		</tr>
 		<tr>

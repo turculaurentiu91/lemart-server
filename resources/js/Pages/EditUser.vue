@@ -113,7 +113,6 @@ export default {
       loading: false,
     };
   },
-  mounted: function() {console.log(this)},
   methods: {
     submit: function() {
       const data = {

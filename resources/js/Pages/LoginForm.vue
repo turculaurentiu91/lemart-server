@@ -99,12 +99,9 @@ export default {
         email: this.email,
         password: this.password,
         remember: true,
-      }).then(() => console.log(this.$page.errors));
+      }).then();
     }
   },
-  mounted: function() {
-    console.log(this.$page)
-  }
 }
 </script>
 
