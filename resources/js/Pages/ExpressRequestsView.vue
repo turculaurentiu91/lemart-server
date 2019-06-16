@@ -106,7 +106,6 @@ export default {
       modalImg: false,
     };
   },
-  mounted: function() {console.log(this.$page.request, this.$page.images)},
   methods: {
     showImage: function(index) {
       this.showModal = true; this.modalImg = index;
