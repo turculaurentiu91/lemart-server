@@ -64,6 +64,7 @@ class PushController extends Controller
                                 'link' => request()->input('link'),
                             ],
                             'sound' => 'default',
+                            'channelId' => 'notifiche-publicitare',
                         ];
                     })
                 )
