@@ -118,9 +118,6 @@ __webpack_require__.r(__webpack_exports__);
       modalImg: false
     };
   },
-  mounted: function mounted() {
-    console.log(this.$page.request, this.$page.images);
-  },
   methods: {
     showImage: function showImage(index) {
       this.showModal = true;

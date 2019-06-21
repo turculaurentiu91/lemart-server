@@ -109,8 +109,7 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       this.$inertia.post('/push-notifications', {
         title: this.title,
-        body: this.body,
-        link: this.link
+        body: this.body
       }).then(function () {
         return _this.loading = false;
       });
@@ -189,54 +188,6 @@ var render = function() {
             ? _c(
                 "div",
                 _vm._l(_vm.$page.errors.title, function(error, index) {
-                  return _c(
-                    "p",
-                    { key: index, staticClass: "w3-tiny w3-text-red" },
-                    [_c("i", [_vm._v("*" + _vm._s(error))])]
-                  )
-                }),
-                0
-              )
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w3-margin-bottom" }, [
-          _c(
-            "label",
-            {
-              staticClass: "w3-text-green",
-              class: { "w3-text-red": _vm.$page.errors.link }
-            },
-            [_vm._v("Link")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.link,
-                expression: "link"
-              }
-            ],
-            staticClass: "w3-input w3-border w3-round",
-            class: { "w3-border-red": _vm.$page.errors.link },
-            attrs: { type: "url", name: "link" },
-            domProps: { value: _vm.link },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.link = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.$page.errors.link
-            ? _c(
-                "div",
-                _vm._l(_vm.$page.errors.link, function(error, index) {
                   return _c(
                     "p",
                     { key: index, staticClass: "w3-tiny w3-text-red" },

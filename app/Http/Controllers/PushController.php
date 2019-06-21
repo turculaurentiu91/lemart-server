@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Promise;
 use Illuminate\Support\Facades\Redirect;
 use function GuzzleHttp\json_encode;
+use function GuzzleHttp\json_decode;
 
 class PushController extends Controller
 {
@@ -39,7 +40,7 @@ class PushController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'link' => 'url|required',
+            'link' => 'url',
         ]);
 
         $tokens = ExponentPushToken::all();
@@ -60,10 +61,8 @@ class PushController extends Controller
                             'to' => $token->token,
                             'title' => request()->input('title'),
                             'body' => request()->input('body'),
-                            'data' => [
-                                'link' => request()->input('link'),
-                            ],
                             'sound' => 'default',
+                            "channelId" => "notifiche-publicitare",
                         ];
                     })
                 )

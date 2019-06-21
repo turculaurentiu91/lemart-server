@@ -25,7 +25,7 @@
           </div>
       </div>
 
-      <div class="w3-margin-bottom">
+      <!--<div class="w3-margin-bottom">
         <label 
           class="w3-text-green"
           v-bind:class="{'w3-text-red': $page.errors.link}"
@@ -44,7 +44,7 @@
               class="w3-tiny w3-text-red"
             ><i>*{{error}}</i></p>
           </div>
-      </div>
+      </div> -->
 
       <div class="w3-margin-bottom">
         <label 
@@ -99,7 +99,6 @@
         this.$inertia.post('/push-notifications', {
           title: this.title,
           body: this.body,
-          link: this.link,
         }).then(() => this.loading = false);
       },
     },
