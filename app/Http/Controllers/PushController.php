@@ -60,6 +60,9 @@ class PushController extends Controller
                             'to' => $token->token,
                             'title' => request()->input('title'),
                             'body' => request()->input('body'),
+                            'data' => [
+                                'link' => request()->input('link'),
+                            ],
                             'sound' => 'default',
                         ];
                     })
