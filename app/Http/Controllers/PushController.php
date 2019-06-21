@@ -39,7 +39,7 @@ class PushController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'link' => 'url',
+            'link' => 'url|required',
         ]);
 
         $tokens = ExponentPushToken::all();
