@@ -94,9 +94,10 @@
 
 <script>
 import Layout from '@/Shared/Layout';
+import ConfirmationDialog from '@/Shared/ConfirmationDialog';
 
 export default {
-  components: {Layout},
+  components: {Layout, ConfirmationDialog},
   data: function() {
       return {
           requestPendingDeletion: null,
