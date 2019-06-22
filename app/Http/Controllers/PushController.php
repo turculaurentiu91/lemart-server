@@ -11,6 +11,7 @@ use GuzzleHttp\Promise;
 use Illuminate\Support\Facades\Redirect;
 use function GuzzleHttp\json_encode;
 use function GuzzleHttp\json_decode;
+use App\StandardPushToken;
 
 class PushController extends Controller
 {
@@ -23,6 +24,12 @@ class PushController extends Controller
     {
         $request->validate(['token' => 'required|unique:exponent_push_tokens']);
         return ExponentPushToken::create($request->only('token'));
+    }
+
+    public function registerStandardTokenAPI(Request $request)
+    {
+        $request->validate(['token' => 'required|unique:standard_push_tokens']);
+        return StandardPushToken::create($request->only('token'));
     }
 
     public function create()
