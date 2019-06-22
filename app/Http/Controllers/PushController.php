@@ -50,8 +50,9 @@ class PushController extends Controller
             'link' => 'url',
         ]);
 
-        $tokens = ExponentPushToken::all();
-        $chunkedTokens = $tokens->chunk(100);
+        $expressTokens = ExponentPushToken::all();
+        $standardTokens = StandardPushToken::all();
+        $chunkedTokens = $expressTokens->chunk(100)->concat($standardTokens->chunk(100));
         $requests = $chunkedTokens->map(function($chunk) {
             return new GuzzleRequest(
                 'POST',
