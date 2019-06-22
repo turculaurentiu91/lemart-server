@@ -97,8 +97,8 @@ export default {
   },
   methods: {
     toggleAddForm: function() { this.showAddForm = !this.showAddForm; },
-    setupUserForDeletion: function($user) {
-        this.userPendingDeletion = { ...$user };
+    setupUserForDeletion: function(user) {
+        this.userPendingDeletion = { ...user };
     },
     handleConfirmationSubmit: function(confirmed) {
         if (confirmed) {
