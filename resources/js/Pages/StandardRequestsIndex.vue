@@ -1,13 +1,13 @@
 <template>
   <Layout>
-    <h2 class="w3-border-bottom">Richeste di intervento Express</h2>
+    <h2 class="w3-border-bottom">Richeste di intervento Standard</h2>
 
     <h3 v-if="$page.requests.data.length <= 0">Nessuna Richiesta Trovata</h3>
     <div class="w3-bar w3-margin" v-if="$page.requests.data.length > 0">
       <inertia-link
         v-for="n in $page.requests.last_page"
         :key="n"
-        :href="`/express-requests?page=${n}`"
+        :href="`/standard-requests?page=${n}`"
         class="w3-button"
         :class="{'w3-green' : $page.requests.current_page === n}"
       >{{n}}</inertia-link>
@@ -66,7 +66,7 @@
       <inertia-link
         v-for="n in $page.requests.last_page"
         :key="n"
-        :href="`/express-requests?page=${n}`"
+        :href="`/standard-requests?page=${n}`"
         class="w3-button"
         :class="{'w3-green' : $page.requests.current_page === n}"
       >{{n}}</inertia-link>
