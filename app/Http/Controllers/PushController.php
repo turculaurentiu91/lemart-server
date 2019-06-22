@@ -17,7 +17,7 @@ class PushController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('registerTokenAPI');
+        $this->middleware('auth')->except(['registerTokenAPI', 'registerStandardTokenAPI']);
     }
 
     public function registerTokenAPI(Request $request)
