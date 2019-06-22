@@ -16,4 +16,5 @@ use Illuminate\Http\Request;
 Route::post('/express-request')->uses('ExpressRequestController@createAPI');
 Route::post('/standard-request')->uses('StandardRequestController@createAPI');
 Route::post('/exponent-push-token')->uses('PushController@registerTokenAPI');
+Route::post('/standard-push-token')->uses('PushController@registerStandardTokenAPI');
 
