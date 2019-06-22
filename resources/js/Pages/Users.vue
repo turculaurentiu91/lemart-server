@@ -4,9 +4,9 @@
     <h2 class="w3-border-bottom">Amministratori</h2>
 
     <div class="w3-bar w3-margin">
-      <inertia-link 
-        v-for="n in $page.users.last_page" 
-        :key="n" 
+      <inertia-link
+        v-for="n in $page.users.last_page"
+        :key="n"
         :href="`/users?page=${n}`"
         class="w3-button"
         :class="{'w3-green' : $page.users.current_page === n}"
@@ -43,36 +43,48 @@
             </inertia-link>
           </td>
           <td>
-            <inertia-link
-              :href="`/users/${user.id}`"
+            <button
               class="w3-button w3-text-red"
               method="delete"
+              @click.prevent="() => setupUserForDeletion(user)"
             >
               <i class="fa fa-times w3-xlarge"></i>
-            </inertia-link>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
 
     <div class="w3-bar w3-margin">
-      <inertia-link 
-        v-for="n in $page.users.last_page" 
-        :key="n" 
+      <inertia-link
+        v-for="n in $page.users.last_page"
+        :key="n"
         :href="`/users?page=${n}`"
         class="w3-button"
         :class="{'w3-green' : $page.users.current_page === n}"
       >{{n}}</inertia-link>
     </div>
+
+    <ConfirmationDialog
+        title="Cancellare Utente"
+        v-if="userPendingDeletion"
+        v-on:confirm="handleConfirmationSubmit"
+    >
+        Sei sicuro di voler eliminare l'utente {{userPendingDeletion.email}}? <br>
+        Questa azione è irreversibile.
+    </ConfirmationDialog>
+
   </Layout>
 </template>
 
 <script>
 import Layout from '@/Shared/Layout';
+import ConfirmationDialog from '@/Shared/ConfirmationDialog';
 
 export default {
   components: {
     Layout,
+    ConfirmationDialog,
   },
   computed: {
     window: () => document.window,
@@ -80,10 +92,20 @@ export default {
   data: function() {
     return {
       showAddForm: false,
+      userPendingDeletion: null,
     };
   },
   methods: {
-    toggleAddForm: function() { this.showAddForm = !this.showAddForm; }
+    toggleAddForm: function() { this.showAddForm = !this.showAddForm; },
+    setupUserForDeletion: function($user) {
+        this.userPendingDeletion = { ...$user };
+    },
+    handleConfirmationSubmit: function(confirmed) {
+        if (confirmed) {
+            this.$inertia.delete(`/users/${this.userPendingDeletion.id}`);
+        }
+        this.userPendingDeletion = null;
+    }
   }
 }
 </script>
