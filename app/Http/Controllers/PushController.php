@@ -82,6 +82,7 @@ class PushController extends Controller
         $promises = $requests->map(function($request) use ($client) { return $client->sendAsync($request); });
         $results = Promise\unwrap($promises);
 
-        return Redirect::route('PushNotifications.create');
+        return Redirect::route('PushNotifications.create')
+            ->with('success', 'Notifica inviata con successo');
     }
 }
