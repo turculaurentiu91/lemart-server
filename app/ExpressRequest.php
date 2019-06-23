@@ -22,4 +22,9 @@ class ExpressRequest extends Model
     {
         return $this->hasMany('App\Image');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_express_request');
+    }
 }
