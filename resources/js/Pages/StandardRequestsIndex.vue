@@ -34,6 +34,7 @@
           v-for="req in $page.requests.data"
           v-bind:key="req.id"
           class="pointer-cursor"
+          :class="{'bold' : $page.user.unreadStandardRequests.indexOf(req.id) !== -1}"
         >
           <td>{{req.id}}</td>
           <td>{{req.company_name}}</td>
