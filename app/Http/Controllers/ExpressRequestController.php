@@ -66,16 +66,16 @@ class ExpressRequestController extends Controller
         $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
         User::all()->each(function ($user) use ($beautymail, $req) {
             $beautymail->send(
-                'emails.expressRequestCreated', 
+                'emails.expressRequestCreated',
                 [
                     'company' => $req->company_name,
                     'link' => config('app.url') . "/express-requests/{$req->id}",
-                ], 
-                function($message) use ($user)
+                ],
+                function($message) use ($user, $req)
             {
                 $message
                     ->to($user->email, $user->name)
-                    ->subject('Nuova Richiesta Express');
+                    ->subject('Nuova Richiesta Express da ' . $req->company_name);
             });
         });
 
