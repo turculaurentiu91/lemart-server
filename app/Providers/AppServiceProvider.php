@@ -37,14 +37,8 @@ class AppServiceProvider extends ServiceProvider
                         'email' => auth()->user()->email,
                         'name' => auth()->user()->name,
                         'id' => auth()->user()->id,
-                        'unreadExpressRequests' => auth()->user()->unreadExpressRequests->map(
-                            function($r) {
-                                return $r->id;
-                        }),
-                        'unreadStandardRequests' => auth()->user()->unreadStandardRequests->map(
-                            function($r) {
-                                return $r->id;
-                        }),
+                        'unreadExpressRequests' => auth()->user()->unreadExpressRequests()->latest()->get(),
+                        'unreadStandardRequests' => auth()->user()->unreadStandardRequests()->latest()->get(),
                     ]
                     : null,
 

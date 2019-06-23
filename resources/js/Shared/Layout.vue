@@ -152,8 +152,6 @@ export default {
     isNavOpened: function() { return !this.isNavClosed; },
     path: function() { return window.location.pathname; },
   },
-
-  mounted: function() { console.log(this.$page.flash)}
 }
 </script>
 
