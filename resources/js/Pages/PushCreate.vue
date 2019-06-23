@@ -94,7 +94,11 @@
         this.$inertia.post('/push-notifications', {
           title: this.title,
           body: this.body,
-        }).then(() => this.loading = false);
+        }).then(() => {
+            this.loading = false;
+            this.title = "";
+            this.body = "";
+        });
       },
 
       handleConfirmation: function(confirmed) {
