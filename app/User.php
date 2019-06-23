@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\ExpressRequest', 'user_express_request');
     }
+
+    public function unreadStandardRequests()
+    {
+        return $this->belongsToMany('App\StandardRequest', 'user_standard_request');
+    }
 }
