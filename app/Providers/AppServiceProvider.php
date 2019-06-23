@@ -40,8 +40,8 @@ class AppServiceProvider extends ServiceProvider
                     ]
                     : null,
 
-                'success' => [
-                    session()->get('success')
+                'flash' => [
+                    'success' =>session()->get('success')
                 ],
             ];
         });
