@@ -31,14 +31,18 @@ class AppServiceProvider extends ServiceProvider
 
         Inertia::share(function() {
             return [
-                'errors' => session()->get('errors') ? session()->get('errors')->getBag('default')->getMessages() : (object) [], 
-                'user' => auth()->user() 
+                'errors' => session()->get('errors') ? session()->get('errors')->getBag('default')->getMessages() : (object) [],
+                'user' => auth()->user()
                     ? [
                         'email' => auth()->user()->email,
                         'name' => auth()->user()->name,
                         'id' => auth()->user()->id,
-                    ] 
+                    ]
                     : null,
+
+                'success' => [
+                    session()->get('success')
+                ],
             ];
         });
     }
