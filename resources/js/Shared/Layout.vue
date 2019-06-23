@@ -40,20 +40,36 @@
 
         <inertia-link
           href="/standard-requests"
-          class="w3-bar-item w3-button w3-hover-gray"
+          class="w3-bar-item w3-button w3-hover-gray w3-display-container"
           :class="{'w3-light-gray': path === '/standard-requests'}"
         >
           <i class="fa fa-upload w3-xxlarge"></i>
           <span v-if="isNavOpened" class="w3-xlarge">Richeste</span>
+          <span
+            v-if="$page.user.unreadStandardRequests.length > 0"
+            class="w3-badge w3-red"
+            :class="{'w3-display-topright w3-small' : isNavClosed}"
+            style="margin: 3px;"
+            >
+              {{$page.user.unreadStandardRequests.length}}
+          </span>
         </inertia-link>
 
         <inertia-link
           href="/express-requests"
-          class="w3-bar-item w3-button w3-hover-gray"
+          class="w3-bar-item w3-button w3-hover-gray w3-display-container"
           :class="{'w3-light-gray': path === '/express-requests'}"
         >
           <i class="fa fa-truck w3-xxlarge"></i>
           <span v-if="isNavOpened" class="w3-xlarge">Richeste Express</span>
+          <span
+            v-if="$page.user.unreadExpressRequests.length > 0"
+            class="w3-badge w3-red"
+            :class="{'w3-display-topright w3-small' : isNavClosed}"
+            style="margin: 3px;"
+            >
+              {{$page.user.unreadExpressRequests.length}}
+          </span>
         </inertia-link>
 
         <inertia-link
