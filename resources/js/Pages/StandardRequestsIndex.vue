@@ -52,7 +52,6 @@
           <td>
             <button
               class="w3-button w3-text-red"
-              method="delete"
               @click.prevent="() => setupRequestForDeletion(req)"
             >
               <i class="fa fa-times w3-xlarge"></i>
