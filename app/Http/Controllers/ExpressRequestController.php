@@ -23,6 +23,8 @@ class ExpressRequestController extends Controller
     public function view(ExpressRequest $expressRequest)
     {
 
+        auth()->user()->unreadExpressRequests()->detach($expressRequest);
+
         return Inertia::render('ExpressRequestsView')
             ->with('request', $expressRequest->toArray())
             ->with('images', $expressRequest->images);
@@ -79,7 +81,7 @@ class ExpressRequestController extends Controller
             });
         });
 
-        $req->users()->sync(App\User::all());
+        $req->users()->sync(User::all());
         $req->save();
 
         return $req;

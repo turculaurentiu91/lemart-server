@@ -22,6 +22,7 @@ class StandardRequestController extends Controller
 
     public function view(StandardRequest $standardRequest)
     {
+        auth()->user()->unreadStandardRequests()->detach($standardRequest);
 
         return Inertia::render('StandardRequestsView')
             ->with('request', $standardRequest->toArray())
@@ -74,7 +75,7 @@ class StandardRequestController extends Controller
             });
         });
 
-        $req->users()->sync(App\User::all());
+        $req->users()->sync(User::all());
         $req->save();
 
 
