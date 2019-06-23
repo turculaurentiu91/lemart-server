@@ -2,7 +2,7 @@
   <Layout>
     <h2 class="w3-border-bottom">Mandare Notifiche Push</h2>
 
-    <form style="max-width: 800px" @submit.prevent="submit">
+    <form style="max-width: 800px" @submit.prevent="pendingConfirmation = true">
 
       <div class="w3-margin-bottom">
         <label
@@ -15,6 +15,7 @@
           name="title"
           v-model="title"
           v-bind:class="{ 'w3-border-red': $page.errors.title}"
+          required
         >
         <div v-if="$page.errors.title">
             <p
@@ -35,6 +36,7 @@
           name="body"
           v-model="body"
           v-bind:class="{ 'w3-border-red': $page.errors.body}"
+          required
         ></textarea>
         <div v-if="$page.errors.body">
             <p
@@ -53,15 +55,28 @@
       >
 
     </form>
+
+    <ConfirmationDialog
+        title="Manda Notifiche Push"
+        v-if="pendingConfirmation"
+        @confirm="handleConfirmation"
+    >
+        Sei sicuro di mandare la notifica con il titolo: <br>
+        <b>{{title}}</b> <br> <br>
+        E il messaggio: <br>
+        <b>{{body}}</b>
+    </ConfirmationDialog>
   </Layout>
 </template>
 
 <script>
   import Layout from '@/Shared/Layout';
+  import ConfirmationDialog from '@/Shared/ConfirmationDialog';
 
   export default {
     components: {
       Layout,
+      ConfirmationDialog,
     },
     data: function() {
       return {
@@ -69,6 +84,7 @@
         body: '',
         link: '',
         loading: false,
+        pendingConfirmation: false,
       };
     },
 
@@ -80,6 +96,14 @@
           body: this.body,
         }).then(() => this.loading = false);
       },
+
+      handleConfirmation: function(confirmed) {
+          if (confirmed) {
+              this.submit();
+          }
+
+          this.pendingConfirmation = false;
+      }
     },
   };
 </script>
