@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         return Inertia::render('Users')
             ->with(
-                'users', 
+                'users',
                 User::select('id', 'name', 'email', 'created_at', 'updated_at')
                     ->paginate(15)
         );
@@ -45,7 +45,7 @@ class UserController extends Controller
             'password' => bcrypt($request->input('password')),
         ])->save();
 
-        return Redirect::route('users');
+        return Redirect::route('users')->with('success', 'Utente registrato con successo.');
     }
 
     public function edit(\App\User $user)
@@ -76,7 +76,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return Redirect::route('users');
+        return Redirect::route('users')->with('success', 'Utente modificato con successo.');
     }
 
     public function delete($id)
@@ -85,6 +85,6 @@ class UserController extends Controller
         {
             User::destroy($id);
         }
-        return Redirect::back();
+        return Redirect::back()->with('success', 'Utente eliminato con successo.');
     }
 }

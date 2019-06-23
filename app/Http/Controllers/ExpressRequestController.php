@@ -87,6 +87,6 @@ class ExpressRequestController extends Controller
         $expressRequest->images->each(function($img) { $img->delete(); });
         $expressRequest->delete();
 
-        return redirect()->route('expressRequests');
+        return redirect()->route('expressRequests')->with('success', 'Richiesta cancellata con successo.');
     }
 }

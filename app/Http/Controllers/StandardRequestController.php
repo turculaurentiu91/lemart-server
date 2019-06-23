@@ -82,6 +82,6 @@ class StandardRequestController extends Controller
         $standardRequest->images->each(function($img) { $img->delete(); });
         $standardRequest->delete();
 
-        return redirect()->route('standardRequests');
+        return redirect()->route('standardRequests')->with('success', 'Richiesta cancellata con successo.');
     }
 }
