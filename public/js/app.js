@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"ff8c867b7bca81e08869","1":"3f692c70c4ef3e2ffbfd","2":"582cae6e4fabed093220","3":"d2c10ab54069c6963432","4":"ac41cfd63fc3ecd8738b","5":"db54db989deb7fc7a8d6","6":"24689cd1880741ed7ba9","7":"69743555169ff0fa90c2","8":"a55288bf8b8c1f97b739","9":"1b5a635399af0e23c538","10":"921a099067026e96d02c","11":"ea9f48532cbec0c240c5"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"ff8c867b7bca81e08869","1":"006a29a23d0c54ea0920","2":"cf4918daedb55e731902","3":"ee13c91e9eb619b2c70f","4":"beab0e9a233f04ce66f4","5":"a7b58defa29acb53ab10","6":"163538810014796ee760","7":"3c0c329f23a0652635c8","8":"38b6c8796403f491ec2b","9":"a2597271a673aaeef8aa","10":"9edd071ced0ad4c5cdb6","11":"05e0414004b2cd5b5ca6"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -3824,6 +3824,7 @@ __webpack_require__.r(__webpack_exports__);
     if (window.history.state && this.navigationType() === 'back_forward') {
       this.setPage(window.history.state)
     } else {
+      initialPage.url += window.location.hash;
       this.setPage(initialPage)
     }
 
@@ -30726,25 +30727,25 @@ var map = {
 		"./resources/js/Pages/CreateUser.vue",
 		0,
 		1,
-		7
+		8
 	],
 	"./CreateUser.vue": [
 		"./resources/js/Pages/CreateUser.vue",
 		0,
 		1,
-		7
+		8
 	],
 	"./EditUser": [
 		"./resources/js/Pages/EditUser.vue",
 		0,
 		1,
-		8
+		9
 	],
 	"./EditUser.vue": [
 		"./resources/js/Pages/EditUser.vue",
 		0,
 		1,
-		8
+		9
 	],
 	"./ExpressRequestsIndex": [
 		"./resources/js/Pages/ExpressRequestsIndex.vue",
@@ -30762,83 +30763,83 @@ var map = {
 		"./resources/js/Pages/ExpressRequestsView.vue",
 		0,
 		1,
-		3
+		5
 	],
 	"./ExpressRequestsView.vue": [
 		"./resources/js/Pages/ExpressRequestsView.vue",
 		0,
 		1,
-		3
+		5
 	],
 	"./Home": [
 		"./resources/js/Pages/Home.vue",
 		0,
 		1,
-		9
+		10
 	],
 	"./Home.vue": [
 		"./resources/js/Pages/Home.vue",
 		0,
 		1,
-		9
+		10
 	],
 	"./LoginForm": [
 		"./resources/js/Pages/LoginForm.vue",
 		0,
-		4
+		6
 	],
 	"./LoginForm.vue": [
 		"./resources/js/Pages/LoginForm.vue",
 		0,
-		4
+		6
 	],
 	"./PushCreate": [
 		"./resources/js/Pages/PushCreate.vue",
 		0,
 		1,
-		10
+		11
 	],
 	"./PushCreate.vue": [
 		"./resources/js/Pages/PushCreate.vue",
 		0,
 		1,
-		10
+		11
 	],
 	"./StandardRequestsIndex": [
 		"./resources/js/Pages/StandardRequestsIndex.vue",
 		0,
 		1,
-		5
+		3
 	],
 	"./StandardRequestsIndex.vue": [
 		"./resources/js/Pages/StandardRequestsIndex.vue",
 		0,
 		1,
-		5
+		3
 	],
 	"./StandardRequestsView": [
 		"./resources/js/Pages/StandardRequestsView.vue",
 		0,
 		1,
-		6
+		7
 	],
 	"./StandardRequestsView.vue": [
 		"./resources/js/Pages/StandardRequestsView.vue",
 		0,
 		1,
-		6
+		7
 	],
 	"./Users": [
 		"./resources/js/Pages/Users.vue",
 		0,
 		1,
-		11
+		4
 	],
 	"./Users.vue": [
 		"./resources/js/Pages/Users.vue",
 		0,
 		1,
-		11
+		4
 	]
 };
 function webpackAsyncContext(req) {
@@ -30950,7 +30951,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\turcu\Projects\lemart-server\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/laurentiu/projects/lemart-server/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })
