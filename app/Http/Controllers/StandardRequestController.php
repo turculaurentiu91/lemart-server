@@ -74,6 +74,10 @@ class StandardRequestController extends Controller
             });
         });
 
+        $req->users()->sync(App\User::all());
+        $req->save();
+
+
         return $req;
     }
 
