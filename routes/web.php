@@ -12,9 +12,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::get('/')->uses('HomeController');
 
 Route::get('login')->name('login')->uses('Auth\LoginController@showLoginForm');
 Route::post('login')->name('login.attempt')->uses('Auth\LoginController@login');
