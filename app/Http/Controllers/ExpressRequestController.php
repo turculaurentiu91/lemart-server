@@ -6,6 +6,8 @@ use App\ExpressRequest;
 use App\Image;
 use App\User;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ExpressRequestCreated;
 
 class ExpressRequestController extends Controller
 {
@@ -65,21 +67,7 @@ class ExpressRequestController extends Controller
             }
         }
 
-        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
-        User::all()->each(function ($user) use ($beautymail, $req) {
-            $beautymail->send(
-                'emails.expressRequestCreated',
-                [
-                    'company' => $req->company_name,
-                    'link' => config('app.url') . "/express-requests/{$req->id}",
-                ],
-                function($message) use ($user, $req)
-            {
-                $message
-                    ->to($user->email, $user->name)
-                    ->subject('Nuova Richiesta Express da ' . $req->company_name);
-            });
-        });
+        Notification::send(User::all(), new ExpressRequestCreated($req));
 
         $req->users()->sync(User::all());
         $req->save();
