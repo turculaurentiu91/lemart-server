@@ -8,6 +8,7 @@ use App\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\StandardRequestCreated;
+use App\Http\Requests\StoreStandardRequest;
 
 class StandardRequestController extends Controller
 {
@@ -31,40 +32,25 @@ class StandardRequestController extends Controller
             ->with('images', $standardRequest->images);
     }
 
-    public function createAPI()
+    public function createAPI(StoreStandardRequest $request)
     {
-        request()->validate([
-            'companyName' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|digits:10',
-            'address' => 'required',
-             'type' => 'required',
-             'person' => 'required',
-             'description' => 'required',
-        ]);
+        $request_data = $request->except(['companyName', 'images']);
+        $request_data['company_name'] = $request->input('companyName');
 
-        $req = new StandardRequest([
-            'company_name' => request()->input('companyName'),
-            'email' => request()->input('email'),
-            'phone' => request()->input('phone'),
-            'address' => request()->input('address'),
-             'type' => request()->input('type'),
-             'person' => request()->input('person'),
-             'description' => request()->input('description'),
-        ]);
+        $req = StandardRequest::create($request_data);
 
-        $req->save();
+        if ($request->has('images')) {
 
-        if (request()->has('images')) {
-            foreach( request()->input('images') as $img ) {
-                $req->images()->save( Image::fromBase64($img) );
-            }
+            $images = collect($request->input('images'))
+                ->map(function($img) { return Image::fromBase64($img); });
+
+            $req->images()->saveMany($images);
         }
 
-        Notification::send(User::all(), new StandardRequestCreated($req));
+        $all_users = User::all();
+        Notification::send($all_users, new StandardRequestCreated($req));
 
-        $req->users()->sync(User::all());
-        $req->save();
+        $req->users()->sync($all_users);
 
 
         return $req;
