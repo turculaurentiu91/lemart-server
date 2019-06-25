@@ -8,6 +8,7 @@ use App\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\ExpressRequestCreated;
+use App\Http\Requests\StoreExpressRequest;
 
 class ExpressRequestController extends Controller
 {
@@ -32,47 +33,24 @@ class ExpressRequestController extends Controller
             ->with('images', $expressRequest->images);
     }
 
-    public function createAPI()
+    public function createAPI(StoreExpressRequest $request)
     {
-        request()->validate([
-            'companyName' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|digits:10',
-            'address' => 'required',
-             'model' => 'required',
-             'weight' => 'required|numeric',
-             'total' => 'required|numeric',
-             'person' => 'required',
-             'damage' => 'required',
-             'images' => 'array',
-        ]);
+        $request_data = $request->except(['companyName', 'images']);
+        $request_data['company_name'] = $request->input('companyName');
 
-        $req = new ExpressRequest([
-            'company_name' => request()->input('companyName'),
-            'email' => request()->input('email'),
-            'phone' => request()->input('phone'),
-            'address' => request()->input('address'),
-             'model' => request()->input('model'),
-             'weight' => request()->input('weight'),
-             'total' => request()->input('total'),
-             'person' => request()->input('person'),
-             'damage' => request()->input('damage'),
-        ]);
+        $expressRequest = ExpressRequest::create($request_data);
 
-        $req->save();
-
-        if (request()->has('images')) {
-            foreach( request()->input('images') as $img ) {
-                $req->images()->save( Image::fromBase64($img) );
-            }
+        if ($request->has('images')) {
+            $images = collect($request->input('images'))
+                ->map(function($img) { return Image::fromBase64($img); });
+            $expressRequest->images()->saveMany($images);
         }
 
-        Notification::send(User::all(), new ExpressRequestCreated($req));
+        $all_users = User::all();
+        Notification::send($all_users, new ExpressRequestCreated($expressRequest));
+        $expressRequest->users()->sync($all_users);
 
-        $req->users()->sync(User::all());
-        $req->save();
-
-        return $req;
+        return $expressRequest;
     }
 
     public function delete(ExpressRequest $expressRequest)

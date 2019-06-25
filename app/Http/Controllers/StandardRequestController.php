@@ -40,16 +40,13 @@ class StandardRequestController extends Controller
         $standardRequest = StandardRequest::create($request_data);
 
         if ($request->has('images')) {
-
             $images = collect($request->input('images'))
                 ->map(function($img) { return Image::fromBase64($img); });
-
             $standardRequest->images()->saveMany($images);
         }
 
         $all_users = User::all();
         Notification::send($all_users, new StandardRequestCreated($standardRequest));
-
         $standardRequest->users()->sync($all_users);
 
         return $standardRequest;
