@@ -37,23 +37,22 @@ class StandardRequestController extends Controller
         $request_data = $request->except(['companyName', 'images']);
         $request_data['company_name'] = $request->input('companyName');
 
-        $req = StandardRequest::create($request_data);
+        $standardRequest = StandardRequest::create($request_data);
 
         if ($request->has('images')) {
 
             $images = collect($request->input('images'))
                 ->map(function($img) { return Image::fromBase64($img); });
 
-            $req->images()->saveMany($images);
+            $standardRequest->images()->saveMany($images);
         }
 
         $all_users = User::all();
-        Notification::send($all_users, new StandardRequestCreated($req));
+        Notification::send($all_users, new StandardRequestCreated($standardRequest));
 
-        $req->users()->sync($all_users);
+        $standardRequest->users()->sync($all_users);
 
-
-        return $req;
+        return $standardRequest;
     }
 
     public function delete(StandardRequest $standardRequest)
