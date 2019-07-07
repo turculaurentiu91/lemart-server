@@ -22,8 +22,6 @@
           <th>Email</th>
           <th>Nr. tel</th>
           <th>Modello</th>
-          <th>Peso</th>
-          <th>Nr. pianali</th>
           <th></th>
           <th></th>
         </tr>
@@ -40,8 +38,6 @@
           <td>{{req.email}}</td>
           <td>{{req.phone}}</td>
           <td>{{req.model}}</td>
-          <td>{{req.weight}}</td>
-          <td>{{req.total}}</td>
           <td>
             <inertia-link
               :href="`/express-requests/${req.id}`"

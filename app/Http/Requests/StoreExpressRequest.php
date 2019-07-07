@@ -28,12 +28,11 @@ class StoreExpressRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'required|digits:10',
             'address' => 'required',
-             'model' => 'required',
-             'weight' => 'required|numeric',
-             'total' => 'required|numeric',
-             'person' => 'required',
-             'damage' => 'required',
-             'images' => 'array',
+            'model' => 'required',
+            'request_address' => 'required',
+            'person' => 'required',
+            'damage' => 'required',
+            'images' => 'array',
         ];
     }
 }

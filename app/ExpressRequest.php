@@ -12,8 +12,7 @@ class ExpressRequest extends Model
         'phone',
         'address',
         'model',
-        'weight',
-        'total',
+        'request_address',
         'person',
         'damage',
     ];
