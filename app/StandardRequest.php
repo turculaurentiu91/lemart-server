@@ -8,9 +8,10 @@ class StandardRequest extends Model
 {
     public $fillable = [
         'company_name',
-        'email', 'phone',
+        'email',
+        'phone',
         'address',
-        'type',
+        'request_address',
         'person',
         'description'
     ];

@@ -23,8 +23,7 @@
           <th>Nome</th>
           <th>Email</th>
           <th>Nr. tel</th>
-          <th>Tipologia Intervento</th>
-          <th>Persona di Rferimento</th>
+          <th>Persona da Contattare</th>
           <th></th>
           <th></th>
         </tr>
@@ -40,7 +39,6 @@
           <td>{{req.company_name}}</td>
           <td>{{req.email}}</td>
           <td>{{req.phone}}</td>
-          <td>{{req.type}}</td>
           <td>{{req.person}}</td>
           <td>
             <inertia-link

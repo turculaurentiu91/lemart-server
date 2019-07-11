@@ -19,7 +19,7 @@ class CreateStandardRequestsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->string('type');
+            $table->string('request_address');
             $table->string('person');
             $table->string('description');
             $table->timestamps();

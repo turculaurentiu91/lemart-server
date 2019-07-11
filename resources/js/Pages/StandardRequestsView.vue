@@ -21,11 +21,11 @@
         <td>{{$page.request.address}}</td>
       </tr>
       <tr>
-        <td>Tipologia intervento</td>
-        <td>{{$page.request.type}}</td>
+        <td>Indirizzo dell'intervento</td>
+        <td>{{$page.request.request_address}}</td>
       </tr>
       <tr>
-        <td>Persona di riferimento</td>
+        <td>Persona da contattare</td>
         <td>{{$page.request.person}}</td>
       </tr>
       <tr>
@@ -39,7 +39,7 @@
     </table>
 
     <div class="row">
-      <div 
+      <div
         class="w3-card-4 img-card w3-border w3-round"
         v-for="(img, index) in $page.images"
         :key="img.id"
@@ -52,7 +52,7 @@
     <div class="w3-modal" style="display: block;" v-if="showModal">
       <div class="w3-modal-content">
         <div class="w3-container center-content">
-          <span @click="() => showModal = false" 
+          <span @click="() => showModal = false"
           class="w3-button w3-display-topright w3-green">&times;</span>
           <img :src="`/storage/${$page.images[modalImg].filename}`" class="w3-image w3-margin-bottom">
         </div>
