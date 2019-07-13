@@ -221,7 +221,7 @@
 export default {
   data: function() {
     return {
-      isNavClosed: true,
+      isNavClosed: !(window.screen.availWidth >= 1024),
       displayFlashMessages: Object.keys(this.$page.flash),
     };
   },
