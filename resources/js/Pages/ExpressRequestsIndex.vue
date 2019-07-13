@@ -14,49 +14,51 @@
       >{{n}}</inertia-link>
     </div>
 
-    <table class="w3-table-all w3-hoverable w3-margin-top" v-if="$page.requests.data.length > 0">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Nr. tel</th>
-          <th>Modello</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="req in $page.requests.data"
-          v-bind:key="req.id"
-          class="pointer-cursor"
-          :class="{'bold' : $page.user.unreadExpressRequests.find(r => r.id === req.id)}"
-        >
-          <td>{{req.id}}</td>
-          <td>{{req.company_name}}</td>
-          <td>{{req.email}}</td>
-          <td>{{req.phone}}</td>
-          <td>{{req.model}}</td>
-          <td>
-            <inertia-link
-              :href="`/express-requests/${req.id}`"
-              class="w3-button w3-text-blue"
-            >
-              <i class="fa fa-eye w3-xlarge"></i>
-            </inertia-link>
-          </td>
-          <td>
-            <button
-              class="w3-button w3-text-red"
-              @click.prevent="() => setupRequestForDeletion(req)"
-            >
-              <i class="fa fa-times w3-xlarge"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="w3-responsive">
+        <table class="w3-table-all w3-hoverable w3-margin-top" v-if="$page.requests.data.length > 0">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Nr. tel</th>
+                <th>Modello</th>
+                <th></th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                v-for="req in $page.requests.data"
+                v-bind:key="req.id"
+                class="pointer-cursor"
+                :class="{'bold' : $page.user.unreadExpressRequests.find(r => r.id === req.id)}"
+                >
+                <td>{{req.id}}</td>
+                <td>{{req.company_name}}</td>
+                <td>{{req.email}}</td>
+                <td>{{req.phone}}</td>
+                <td>{{req.model}}</td>
+                <td>
+                    <inertia-link
+                    :href="`/express-requests/${req.id}`"
+                    class="w3-button w3-text-blue"
+                    >
+                    <i class="fa fa-eye w3-xlarge"></i>
+                    </inertia-link>
+                </td>
+                <td>
+                    <button
+                    class="w3-button w3-text-red"
+                    @click.prevent="() => setupRequestForDeletion(req)"
+                    >
+                    <i class="fa fa-times w3-xlarge"></i>
+                    </button>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="w3-bar w3-margin" v-if="$page.requests.data.length > 0">
       <inertia-link
