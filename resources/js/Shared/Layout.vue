@@ -1,5 +1,5 @@
 <template>
-  <div class="w3-white page">
+  <div class="w3-white" style="min-height: calc(100vh - 20px);">
 
     <nav
         class="w3-sidebar w3-bar-block sidebar w3-green w3-border-right"
