@@ -14,22 +14,24 @@
             <i v-if="isNavOpened" class="fa fa-times"></i>
         </button>
 
-        <div v-if="isNavOpened" style="margin-top: 10vh" class="w3-container">
-            Registrato come: <br>
-            {{ $page.user.name }} <br>
-            {{ $page.user.email }} <br> <br>
-            <inertia-link class="w3-button w3-light-gray" href="/logout" method="post">Logout</inertia-link>
+        <transition name="profile-tr">
+            <div v-if="isNavOpened" style="margin-top: 10vh" class="w3-container">
+                Registrato come: <br>
+                {{ $page.user.name }} <br>
+                {{ $page.user.email }} <br> <br>
+                <inertia-link class="w3-button w3-light-gray" href="/logout" method="post">Logout</inertia-link>
 
-        </div>
+            </div>
+        </transition>
 
-        <div style="margin-top: 20vh">
+        <div :style="{marginTop: isNavClosed ? '20vh' : '5vh'}">
             <inertia-link
             href="/home"
             class="w3-bar-item w3-button w3-hover-gray"
             :class="{'w3-light-gray': path === '/home' || path === '/'}"
             >
             <i class="fa fa-home w3-xxlarge"></i>
-            <span v-if="isNavOpened" class="w3-large">Acasa</span>
+            <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Acasa</span></transition>
             </inertia-link>
 
             <inertia-link
@@ -38,7 +40,7 @@
             :class="{'w3-light-gray': path === '/users'}"
             >
             <i class="fa fa-users w3-xxlarge"></i>
-            <span v-if="isNavOpened" class="w3-large">Amministratori</span>
+            <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Amministratori</span></transition>
             </inertia-link>
 
             <inertia-link
@@ -47,7 +49,7 @@
             :class="{'w3-light-gray': path === '/standard-requests'}"
             >
             <i class="fa fa-upload w3-xxlarge"></i>
-            <span v-if="isNavOpened" class="w3-large">Richeste</span>
+            <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Richeste</span></transition>
             <span
                 v-if="$page.user.unreadStandardRequests.length > 0"
                 class="w3-badge w3-red"
@@ -64,7 +66,7 @@
             :class="{'w3-light-gray': path === '/express-requests'}"
             >
             <i class="fa fa-truck w3-xxlarge"></i>
-            <span v-if="isNavOpened" class="w3-large">Richeste Express</span>
+            <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Richeste Express</span></transition>
             <span
                 v-if="$page.user.unreadExpressRequests.length > 0"
                 class="w3-badge w3-red"
@@ -81,7 +83,7 @@
             :class="{'w3-light-gray': path === '/push-notifications/create'}"
             >
             <i class="fa fa-bell w3-xxlarge"></i>
-            <span v-if="isNavOpened" class="w3-large">Notifiche Push</span>
+            <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Notifiche Push</span></transition>
             </inertia-link>
         </div>
     </nav>
@@ -163,6 +165,25 @@
     }
 
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+    }
+
+    .nav-text-tr-enter-active {
+        transition: opacity .2s;
+        transition-delay: .5s;
+    }
+
+    .nav-text-tr-enter{
+        opacity: 0;
+    }
+
+    .profile-tr-enter-active {
+        transition: all .2s;
+        transition-delay: .5s;
+    }
+
+    .profile-tr-enter {
+        height: 0%;
         opacity: 0;
     }
 
