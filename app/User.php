@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\StandardRequest', 'user_standard_request');
     }
+
+    public function unreadEasypressRequests()
+    {
+        return $this->belongsToMany('App\EasypressRequest', 'user_easypress_request');
+    }
 }

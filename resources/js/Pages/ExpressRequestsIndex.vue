@@ -18,21 +18,21 @@
         <table class="w3-table-all w3-hoverable w3-margin-top" v-if="$page.requests.data.length > 0">
             <thead>
                 <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Nr. tel</th>
-                <th>Modello</th>
-                <th></th>
-                <th></th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Nr. tel</th>
+                    <th>Modello</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                v-for="req in $page.requests.data"
-                v-bind:key="req.id"
-                class="pointer-cursor"
-                :class="{'bold' : $page.user.unreadExpressRequests.find(r => r.id === req.id)}"
+                    v-for="req in $page.requests.data"
+                    v-bind:key="req.id"
+                    class="pointer-cursor"
+                    :class="{'bold' : $page.user.unreadExpressRequests.find(r => r.id === req.id)}"
                 >
                 <td>{{req.id}}</td>
                 <td>{{req.company_name}}</td>

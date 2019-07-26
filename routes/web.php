@@ -1,5 +1,4 @@
 <?php
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +37,10 @@ Route::delete('/standard-requests/{standardRequest}')->name('standardRequests.de
 Route::get('/push-notifications/create')->name('PushNotifications.create')->uses('PushController@create');
 Route::post('/push-notifications')->name('PushNotifications.send')->uses('PushController@send');
 
+Route::resource('/easypress', 'EasypressRequestController')
+    ->parameters(['easypress' => 'easypressRequest']);
+
+Route::resource('easypress-price-rules', 'EasypressPriceRuleController')
+    ->parameters(['easypress_price_rule', 'easypressPriceRule']);
+
+Route::get('/easypress/{easypressRequest}/document')->uses('EasypressRequestController@getPDFDocument');

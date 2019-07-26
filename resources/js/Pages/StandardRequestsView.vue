@@ -1,42 +1,9 @@
 <template>
-  <Layout>
+  <layout>
 
     <h2 class="w3-border-bottom">Richesta di intervento Express per {{$page.request.company_name}}</h2>
 
-    <table class="w3-table" >
-      <tr>
-        <td>Nome dell'azienda</td>
-        <td>{{$page.request.company_name}}</td>
-      </tr>
-      <tr>
-        <td>E-mail</td>
-        <td>{{$page.request.email}}</td>
-      </tr>
-      <tr>
-        <td>Numero di cellulare</td>
-        <td>{{$page.request.phone}}</td>
-      </tr>
-      <tr>
-        <td>Indirizzo</td>
-        <td>{{$page.request.address}}</td>
-      </tr>
-      <tr>
-        <td>Indirizzo dell'intervento</td>
-        <td>{{$page.request.request_address}}</td>
-      </tr>
-      <tr>
-        <td>Persona da contattare</td>
-        <td>{{$page.request.person}}</td>
-      </tr>
-      <tr>
-        <td>Descrizione Intervento</td>
-        <td>{{$page.request.description}}</td>
-      </tr>
-      <tr>
-        <td>Mandato il</td>
-        <td>{{$page.request.created_at}}</td>
-      </tr>
-    </table>
+    <single-view-table v-bind:struct="tableStruct" />
 
     <div class="row">
       <div
@@ -58,7 +25,7 @@
         </div>
       </div>
     </div>
-  </Layout>
+  </layout>
 </template>
 
 <style scoped>
@@ -89,9 +56,13 @@
 
 <script>
 import Layout from '@/Shared/Layout';
+import SingleViewTable from '@/Shared/SingleViewTable';
 
 export default {
-  components: {Layout},
+    components: {
+        'layout': Layout,
+        'single-view-table': SingleViewTable,
+    },
   data: function() {
     return {
       showModal: false,
@@ -102,6 +73,22 @@ export default {
     showImage: function(index) {
       this.showModal = true; this.modalImg = index;
     }
-  }
+  },
+    computed: {
+      req: function() { return this.$page.request; },
+       tableStruct: function() {
+           return {
+                'ID': this.req.id,
+                'Nome dell\'azienda': this.req.company_name,
+                'E-mail': this.req.email,
+                'Numero di cellulare': this.req.phone,
+                'Indirizzo': this.req.address,
+                'Indirizzo dell\'intervento': this.req.request_address,
+                'Persona da contattare': this.req.person,
+                'Descrizione Intervento': this.req.description,
+                'Mandato il': this.req.created_at,
+           }
+      },
+  },
 }
 </script>

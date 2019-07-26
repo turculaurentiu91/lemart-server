@@ -17,4 +17,5 @@ Route::post('/express-request')->uses('ExpressRequestController@createAPI');
 Route::post('/standard-request')->uses('StandardRequestController@createAPI');
 Route::post('/exponent-push-token')->uses('PushController@registerTokenAPI');
 Route::post('/standard-push-token')->uses('PushController@registerStandardTokenAPI');
-
+Route::post('/easypress')->uses('EasypressRequestController@storeAPI');
+Route::get('/easypress/price')->uses('EasypressRequestController@priceAPI');

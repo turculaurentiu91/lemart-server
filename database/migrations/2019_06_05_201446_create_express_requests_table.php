@@ -20,7 +20,8 @@ class CreateExpressRequestsTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('model');
-            $table->string('request_address');
+            $table->string('weight');
+            $table->string('platforms');
             $table->string('person');
             $table->string('damage');
             $table->timestamps();

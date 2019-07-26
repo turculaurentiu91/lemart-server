@@ -77,6 +77,41 @@
             </span>
             </inertia-link>
 
+            <div class="w3-dropdown-hover">
+                <inertia-link
+                    href="/easypress"
+                    class="w3-bar-item w3-button w3-hover-gray w3-display-container"
+                    :class="{'w3-light-gray': path === '/easypress' || path === '/easypress-price-rules'}"
+                >
+                    <i class="fa fa-etsy w3-xxlarge"></i>
+                    <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Easypress</span></transition>
+                    <span
+                        v-if="$page.user.unreadEasypressRequests.length > 0"
+                        class="w3-badge w3-red"
+                        :class="{'w3-display-topright w3-small' : isNavClosed}"
+                        style="margin: 3px;"
+                    >
+                        {{$page.user.unreadEasypressRequests.length}}
+                    </span>
+                </inertia-link>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <inertia-link
+                            href="/easypress"
+                            class="w3-bar-item w3-button"
+                            :class="{'w3-gray' : path === '/easypress'}"
+                        >
+                            Preventivi Easypress
+                        </inertia-link>
+                        <inertia-link
+                            href="/easypress-price-rules"
+                            class="w3-bar-item w3-button"
+                            :class="{'w3-gray' : path === '/easypress-price-rules'}"
+                        >
+                            Regole Prezzi
+                        </inertia-link>
+                    </div>
+            </div>
+
             <inertia-link
             href="/push-notifications/create"
             class="w3-bar-item w3-button w3-hover-gray"
@@ -145,11 +180,11 @@
     }
 
     .page--nav-opened {
-        margin-left: 20%;
+        margin-left: 20rem;
     }
 
     .sidebar {
-        width: 20%;
+        width: 20rem;
         transition: all .5s;
     }
 
@@ -185,6 +220,20 @@
     .profile-tr-enter {
         height: 0%;
         opacity: 0;
+    }
+
+    .w3-dropdown-content {
+        display: block;
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+        transition: transform, opacity .2s;
+    }
+
+    .w3-dropdown-hover:hover .w3-dropdown-content {
+        display: block;
+        transform: scaleY(1);
+        opacity: 1;
     }
 
      @media screen and (max-width: 768px) {

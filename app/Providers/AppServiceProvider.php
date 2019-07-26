@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
                         'id' => auth()->user()->id,
                         'unreadExpressRequests' => auth()->user()->unreadExpressRequests()->latest()->get(),
                         'unreadStandardRequests' => auth()->user()->unreadStandardRequests()->latest()->get(),
+                        'unreadEasypressRequests' => auth()->user()->unreadEasypressRequests()->latest()->get(),
                     ]
                     : null,
 

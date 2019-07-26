@@ -87,6 +87,47 @@
     <div class="w3-row-padding">
         <div class="w3-col l6 m12">
             <div class="w3-card-2 w3-display-container home-card">
+                <h3 class="w3-light-gray w3-padding">Nuovi Preventivi Easypress:
+                    <b v-if="$page.user.unreadEasypressRequests.length > 0">
+                        {{$page.user.unreadEasypressRequests.length}}
+                    </b>
+                </h3>
+                <div class="w3-responsive">
+                    <table class="w3-table w3-bordered w3-hoverable" v-if="$page.user.unreadEasypressRequests.length > 0">
+                        <tr>
+                            <th>ID</th>
+                            <th>E-mail</th>
+                            <th>Nr. Appartamenti</th>
+                            <th>Creato Il</th>
+                        </tr>
+                        <tr
+                            v-for="req in $page.user.unreadEasypressRequests.slice(0, 5)"
+                            :key="req.id"
+                            @click.prevent="$inertia.visit(`/easypress/${req.id}`)"
+                            style="cursor: pointer;"
+                            class="w3-hover-light-gray"
+                        >
+                            <td>{{req.formatted_id}}</td>
+                            <td>{{req.email}}</td>
+                            <td>{{req.appartament_count}}</td>
+                            <td>{{req.created_at}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="w3-panel" v-if="$page.user.unreadEasypressRequests.length > 0">
+                    <inertia-link href="/easypress">Vedi Tutto</inertia-link>
+                </div>
+
+                <h4
+                    v-if="$page.user.unreadEasypressRequests.length == 0"
+                    class="w3-display-middle"
+                >Non ci suono nuovi preventivi Easypress</h4>
+            </div>
+        </div>
+
+        <div class="w3-col l6 m12">
+            <div class="w3-card-2 w3-display-container home-card">
                 <h3 class="w3-light-gray w3-padding">
                     Manda Notifiche Push
                 </h3>
