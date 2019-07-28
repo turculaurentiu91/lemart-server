@@ -16,7 +16,6 @@ class EasypressRequest extends Model
         'price_plus',
     ];
 
-    protected $dateFormat = 'd-m-Y H:i:s';
     protected $appends = [
         'formatted_id',
         'base64_pdf_document',
