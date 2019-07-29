@@ -1,6 +1,6 @@
 <template>
     <layout>
-
+        <easypress-nav />
         <h2 class="w3-border-bottom">Regole dei prezzi Easypress</h2>
 
         <div v-if="$page.easypressPriceRules.data.length > 0">
@@ -115,11 +115,13 @@
 <script>
 import Layout from '@/Shared/Layout';
 import ConfirmationDialog from '@/Shared/ConfirmationDialog';
+import EasypressNav from '@/Shared/EasypressNav';
 
 export default {
     components: {
         'layout' : Layout,
         'confirmation-dialog': ConfirmationDialog,
+        'easypress-nav': EasypressNav,
     },
     methods: {
         setupRuleForDeletion: function(rule) {
