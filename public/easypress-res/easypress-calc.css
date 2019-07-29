@@ -8,7 +8,7 @@
     animation: spin 1s ease-in-out infinite;
     -webkit-animation: spin 1s ease-in-out infinite;
   }
-  
+
   @keyframes spin {
     to { -webkit-transform: rotate(360deg); }
   }
@@ -40,7 +40,7 @@
     margin-bottom: 2rem;
 }
 
-.easypress-form-group input, 
+.easypress-form-group input,
 .easypress-form-group textarea
 {
     width: 100%;
@@ -51,7 +51,7 @@
     outline: none;
 }
 
-.easypress-form-group input:focus, 
+.easypress-form-group input:focus,
 .easypress-form-group textarea:focus {
     border-bottom-color: rgba(112, 173, 71, 1);
 }
@@ -89,6 +89,7 @@
 
 #easypress-download {
     width: initial;
+    text-align: center;
 }
 
 .easypress-form-group button:hover,
@@ -103,7 +104,7 @@
 
 .easypress-form-group button:disabled,
 .easypress-result button:disabled {
-    background-color: rgba(162, 189, 143, 1); 
+    background-color: rgba(162, 189, 143, 1);
     cursor: not-allowed;
 }
 
@@ -147,7 +148,7 @@ table.easypress-prices-table th {
 }
 
 #easypress-main-section {
-    transition: max-height 1s; 
+    transition: max-height 1s;
     overflow: hidden;
     max-height: 500px;
 }

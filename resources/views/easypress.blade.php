@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="{{asset('easypress-res/easypress-calc.css')}}" type="text/css">
         <script type="text/javascript" src="{{asset('easypress-res/easypress-calc.js')}}"></script>
+        <script type="text/javascript" src="{{asset('easypress-res/download.js')}}"></script>
         <title>Easypress Calc</title>
     </head>
     <body>

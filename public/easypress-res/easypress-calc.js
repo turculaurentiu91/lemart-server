@@ -121,10 +121,14 @@ const easypressCalc = {
             console.log(response);
 
             document.querySelector('#easypress-download')
-                .setAttribute(
-                    'href',
-                    `data:application/pdf;base64,${response.base64_pdf_document}`
-                );
+                .addEventListener('click', function(e) {
+                    e.preventDefault();
+                    download(
+                        `data:application/pdf;base64,${response.base64_pdf_document}`,
+                        'preventivo.pdf',
+                        'application/pdf'
+                    );
+                })
 
             document.querySelector('#easypress-main-section')
                 .style.maxHeight = '0';
