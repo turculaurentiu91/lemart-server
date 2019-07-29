@@ -44,3 +44,7 @@ Route::resource('easypress-price-rules', 'EasypressPriceRuleController')
     ->parameters(['easypress_price_rule', 'easypressPriceRule']);
 
 Route::get('/easypress/{easypressRequest}/document')->uses('EasypressRequestController@getPDFDocument');
+
+Route::get('/easypress-calc', function() {
+    return view('easypress');
+});

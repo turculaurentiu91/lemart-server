@@ -231,7 +231,7 @@ var render = function() {
     "div",
     { staticClass: "w3-modal", staticStyle: { display: "block" } },
     [
-      _c("div", { staticClass: "w3-modal-content" }, [
+      _c("div", { staticClass: "w3-modal-content w3-animate-opacity" }, [
         _c("div", [
           _c(
             "span",

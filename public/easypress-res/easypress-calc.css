@@ -1,0 +1,233 @@
+.loader {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 3px solid rgba(0,0,0,.3);
+    border-radius: 50%;
+    border-top-color: black;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+
+.easypress-app-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.easypress-app {
+    border: 1px solid gray;
+    box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    min-height: 25rem;
+}
+
+.easypress-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.easypress-title span:first-child {
+    color: rgba(112, 173, 71, 1);
+}
+
+.easypress-form-group:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.easypress-form-group input, 
+.easypress-form-group textarea
+{
+    width: 100%;
+    border: 0;
+    border-bottom: 3px solid #777;
+    padding: 5px;
+    transition: all .3s;
+    outline: none;
+}
+
+.easypress-form-group input:focus, 
+.easypress-form-group textarea:focus {
+    border-bottom-color: rgba(112, 173, 71, 1);
+}
+
+.easypress-form-group textarea {
+    height: 3em;
+}
+
+.easypress-form-group input:invalid {
+    border-bottom-color: #e6a927;
+}
+
+.easypress-form-group p,
+.easypress-prices p {
+    font-size: .8rem;
+    color: #777;
+}
+
+.easypress-form-group button,
+.easypress-result button,
+#easypress-download {
+    background-color: rgba(112, 173, 71, 1);
+    color: white;
+    border: 1px solid black;
+    padding: 10px;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
+
+#easypress-download {
+    width: initial;
+}
+
+.easypress-form-group button:hover,
+.easypress-result button:hover {
+    box-shadow: 5px 7px 5px rgba(0, 0, 0, 0.2);
+}
+
+.easypress-form-group button:active,
+.easypress-result button:active {
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.easypress-form-group button:disabled,
+.easypress-result button:disabled {
+    background-color: rgba(162, 189, 143, 1); 
+    cursor: not-allowed;
+}
+
+table.easypress-prices-table,
+table.easypress-prices-table tr,
+table.easypress-prices-table th,
+table.easypress-prices-table td
+{
+    border: 1px solid #777;
+}
+
+table.easypress-prices-table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+    width: 100%;
+    position: relative;
+}
+
+.easypress-prices {
+    position: relative;
+}
+
+.easypress-prices-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+table.easypress-prices-table td {
+    padding-left: 1rem;
+}
+
+table.easypress-prices-table th {
+    color: rgba(112, 173, 71, 1);
+}
+
+#easypress-main-section {
+    transition: max-height 1s; 
+    overflow: hidden;
+    max-height: 500px;
+}
+
+.easypress-result {
+    opacity: 0;
+    transition: opacity .5s ease-in;
+    transition-delay: 1.3s;
+}
+
+.easypress-result-shown {
+    opacity: 1;
+}
+
+.easypress-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.easypress-modal-content {
+    width: 50vw;
+    background: #fff;
+    position: relative;
+    padding: 1rem;
+}
+
+.easypress-modal-content h3 {
+    text-indent: 2rem;
+}
+
+.easypress-modal-close-btn {
+    background-color: #fff;
+    border: 1px solid black;
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, .2);
+    cursor: pointer;
+    display: block;
+    width: 80%;
+    margin: 2rem auto 1rem auto;
+    padding: .5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.easypress-modal-close-btn:hover {
+    box-shadow: 4px 5px 9px rgba(0, 0, 0, .2);
+    transform: translateY(-2px);
+}
+
+.easypress-modal-close-btn:active {
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .2);
+    transform: translateY(0);
+}
+
+.easypress-modal-cross-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background-color: #fff;
+    border: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: .5rem 1rem;
+}
+
+.easypress-modal-cross-btn:hover {
+    background-color: #d5d5d5;
+}
+
+@media only screen and (max-width: 767px) {
+    .easypress-modal-content {
+        width: 80vw;
+    }
+}

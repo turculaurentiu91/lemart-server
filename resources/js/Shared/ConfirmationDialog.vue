@@ -1,6 +1,6 @@
 <template>
     <div class="w3-modal" style="display: block">
-  <div class="w3-modal-content">
+  <div class="w3-modal-content w3-animate-opacity">
     <div>
       <span @click="$emit('confirm', false)"
       class="w3-button w3-display-topright">&times;</span>

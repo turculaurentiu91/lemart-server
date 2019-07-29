@@ -1,5 +1,5 @@
 <template>
-  <div class="w3-white" style="min-height: calc(100vh - 20px);">
+  <div class="w3-white template" style="">
 
     <nav
         class="w3-sidebar w3-bar-block sidebar w3-green w3-border-right"
@@ -28,7 +28,7 @@
             <inertia-link
             href="/home"
             class="w3-bar-item w3-button w3-hover-gray"
-            :class="{'w3-light-gray': path === '/home' || path === '/'}"
+            :class="{'w3-light-gray active-link': path === '/home' || path === '/'}"
             >
             <i class="fa fa-home w3-xxlarge"></i>
             <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Acasa</span></transition>
@@ -37,7 +37,7 @@
             <inertia-link
             href="/users"
             class="w3-bar-item w3-button w3-hover-gray"
-            :class="{'w3-light-gray': path === '/users'}"
+            :class="{'w3-light-gray active-link': path === '/users'}"
             >
             <i class="fa fa-users w3-xxlarge"></i>
             <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Amministratori</span></transition>
@@ -46,7 +46,7 @@
             <inertia-link
             href="/standard-requests"
             class="w3-bar-item w3-button w3-hover-gray w3-display-container"
-            :class="{'w3-light-gray': path === '/standard-requests'}"
+            :class="{'w3-light-gray active-link': path === '/standard-requests'}"
             >
             <i class="fa fa-upload w3-xxlarge"></i>
             <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Richeste</span></transition>
@@ -63,7 +63,7 @@
             <inertia-link
             href="/express-requests"
             class="w3-bar-item w3-button w3-hover-gray w3-display-container"
-            :class="{'w3-light-gray': path === '/express-requests'}"
+            :class="{'w3-light-gray active-link': path === '/express-requests'}"
             >
             <i class="fa fa-truck w3-xxlarge"></i>
             <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Richeste Express</span></transition>
@@ -81,7 +81,7 @@
                 <inertia-link
                     href="/easypress"
                     class="w3-bar-item w3-button w3-hover-gray w3-display-container"
-                    :class="{'w3-light-gray': path === '/easypress' || path === '/easypress-price-rules'}"
+                    :class="{'w3-light-gray active-link': path === '/easypress' || path === '/easypress-price-rules'}"
                 >
                     <i class="fa fa-etsy w3-xxlarge"></i>
                     <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Easypress</span></transition>
@@ -94,7 +94,7 @@
                         {{$page.user.unreadEasypressRequests.length}}
                     </span>
                 </inertia-link>
-                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <div v-if="isNavOpened" class="w3-dropdown-content w3-bar-block w3-card-4">
                         <inertia-link
                             href="/easypress"
                             class="w3-bar-item w3-button"
@@ -115,7 +115,7 @@
             <inertia-link
             href="/push-notifications/create"
             class="w3-bar-item w3-button w3-hover-gray"
-            :class="{'w3-light-gray': path === '/push-notifications/create'}"
+            :class="{'w3-light-gray active-link': path === '/push-notifications/create'}"
             >
             <i class="fa fa-bell w3-xxlarge"></i>
             <transition name="nav-text-tr"><span v-if="isNavOpened" class="w3-large">Notifiche Push</span></transition>
@@ -123,22 +123,23 @@
         </div>
     </nav>
 
+    <transition name="fade">
+        <div class="overlay" v-if="isNavOpened"></div>
+    </transition>
 
     <div
         class="page"
         :class="{'page--nav-closed': isNavClosed, 'page--nav-opened': isNavOpened}"
     >
-        <transition name="fade">
-            <div class="overlay" v-if="isNavOpened"></div>
-        </transition>
 
         <header>
-            <h1 class="w3-green w3-padding">
+            <h1 class="w3-padding">
             <span style="font-family: Times New Roman">Lemart &amp; Lemart</span> Express Control Panel
             </h1>
         </header>
 
         <div v-for="(value, name) in $page.flash" :key="name">
+          <transition name="fade">
             <div
                 v-if="value && displayFlashMessages.indexOf(name) !== -1"
                 class="w3-card-4 flash-message w3-border-blue w3-leftbar w3-padding w3-display-container"
@@ -149,9 +150,10 @@
                     @click="displayFlashMessages = displayFlashMessages.filter(msgName => msgName !== name)"
                 >&times;</span>
             </div>
+          </transition>
         </div>
 
-      <div class="w3-container">
+      <div class="w3-container w3-animate-opacity">
         <slot />
       </div>
     </div>
@@ -166,7 +168,7 @@
     }
 
     body {
-        background-color: lightgray;
+        background: linear-gradient(to left, #4CAF50 20vw, #EEE 20.2vw);
         margin: 8px;
     }
 
@@ -186,6 +188,16 @@
     .sidebar {
         width: 20rem;
         transition: all .5s;
+        position: absolute!important;
+    }
+
+    .template {
+        min-height: calc(100vh - 20px);
+        width: 80vw;
+        margin: 10vh auto;
+        position: relative;
+        border: 1px solid #999;
+        box-shadow: 7px 15px 10px rgba(0, 0, 0, .3);
     }
 
     .sidebar--closed {
@@ -236,7 +248,30 @@
         opacity: 1;
     }
 
+    .active-link {
+        animation: active-link-anim 1s ease-in-out;
+    }
+
+    @keyframes active-link-anim {
+        from {
+          background-color: #4CAF50;
+        }
+        to {
+          background-color: #F1F1F1;
+        }
+    }
+
      @media screen and (max-width: 768px) {
+
+         h1 {
+             font-size: 2rem;
+         }
+
+        .template {
+            margin: 5vh auto;
+            width: 90vw;
+        }
+
         .page--nav-opened {
             margin-left: 7px;
         }
@@ -267,16 +302,20 @@
 </style>
 
 <script>
+
 export default {
   data: function() {
     return {
-      isNavClosed: !(window.screen.availWidth >= 1024),
+      isNavClosed: Boolean(Number(localStorage.getItem('isNavClosed'))),
       displayFlashMessages: Object.keys(this.$page.flash),
     };
   },
 
   methods: {
-    toggleNav: function() { this.isNavClosed = !this.isNavClosed },
+    toggleNav: function() {
+      this.isNavClosed = !this.isNavClosed;
+      localStorage.setItem('isNavClosed', Number(this.isNavClosed));
+    },
   },
 
   computed: {

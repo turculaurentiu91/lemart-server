@@ -1,7 +1,8 @@
 <template>
     <layout>
-
+        <easypress-nav />
         <h2 class="w3-border-bottom">Preventivi Easypress</h2>
+
 
         <div v-if="$page.easypressRequests.data.length > 0">
             <div class="w3-bar w3-margin">
@@ -99,11 +100,13 @@
 <script>
 import Layout from '@/Shared/Layout';
 import ConfirmationDialog from '@/Shared/ConfirmationDialog';
+import EasypressNav from '@/Shared/EasypressNav';
 
 export default {
     components: {
         'layout' : Layout,
         'confirmation-dialog': ConfirmationDialog,
+        'easypress-nav': EasypressNav,
     },
     methods: {
         setupRequestForDeletion: function(req) {
