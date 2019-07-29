@@ -9,9 +9,9 @@
         </inertia-link>
 
         <inertia-link
-            href="easypress-price-rules"
+            href="/easypress-price-rules"
             class="w3-bar-item w3-button w3-mobile"
-            :calss="{'w3-gray' : path==='/easypress-price-rules'}"
+            :class="{'w3-gray' : path==='/easypress-price-rules'}"
         >
             Regole Dei Prezzi
         </inertia-link>
