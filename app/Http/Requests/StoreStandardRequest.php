@@ -29,9 +29,9 @@ class StoreStandardRequest extends FormRequest
             'phone' => 'required|digits:10',
             'address' => 'required',
             'model' => 'required',
-             'request_address' => 'required',
-             'person' => 'required',
-             'description' => 'required',
+            'request_address' => 'required',
+            'person' => 'required',
+            'description' => 'required',
         ];
     }
 }

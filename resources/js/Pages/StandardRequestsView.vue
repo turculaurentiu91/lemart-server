@@ -83,6 +83,7 @@ export default {
                 'E-mail': this.req.email,
                 'Numero di cellulare': this.req.phone,
                 'Indirizzo': this.req.address,
+                'Marca, Modello e Tipo': this.req.model,
                 'Indirizzo dell\'intervento': this.req.request_address,
                 'Persona da contattare': this.req.person,
                 'Descrizione Intervento': this.req.description,
