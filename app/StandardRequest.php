@@ -11,6 +11,7 @@ class StandardRequest extends Model
         'email',
         'phone',
         'address',
+        'model',
         'request_address',
         'person',
         'description'

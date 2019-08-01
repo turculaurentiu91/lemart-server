@@ -28,6 +28,7 @@ class StoreStandardRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'required|digits:10',
             'address' => 'required',
+            'model' => 'required',
              'request_address' => 'required',
              'person' => 'required',
              'description' => 'required',
