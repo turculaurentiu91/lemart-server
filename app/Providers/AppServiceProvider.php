@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        date_default_timezone_set("Europe/Rome");
 
         Inertia::version(function () {
             return md5_file(public_path('mix-manifest.json'));
